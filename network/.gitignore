@@ -1,0 +1,10 @@
+*.out
+*.txt
+*.backup
+.vscode/
+include/history/*
+**/*.out
+.cache
+compile_commands.json
+*.txt
+!CMakeLists.txt

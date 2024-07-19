@@ -1,0 +1,11 @@
+{
+  "name": "John",
+  "age": 30,
+  "isStudent": false,
+  "grades": [85, 90, 95],
+  "address": {
+      "city": "New York",
+      "zip": "10001"
+  },
+  "spouse": null
+}
