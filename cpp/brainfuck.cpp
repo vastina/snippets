@@ -141,8 +141,17 @@ struct bf_executer_t {
     std::stack<std::pair<std::size_t, std::size_t>> braces;
     std::size_t codepos{0u};
     const auto gotoNext{[this, &codepos] {
-      while (parser.code[codepos++] != ']')
-        ;
+      std::size_t right{0u};
+      std::size_t left{1u};
+
+      codepos++; // skip current [
+      while (right < left) {
+        if (parser.code[codepos] == '[')
+          left++;
+        else if (parser.code[codepos] == ']')
+          right++;
+        codepos++;
+      }
     }};
     while (true) {
       char ch = parser.code[codepos];
@@ -224,6 +233,16 @@ int main() {
     e.execute();
 
     std::putchar('\n');
+  }
+  {
+    e.parser.readInput("++++++++++[>+++++++>++++++++++>+++>+<<<<-]"
+                       ">++.>+.+++++++..+++.>++.<<+++++++++++++++."
+                       ">.+++.------.--------.>+.>.");
+    e.execute();
+  }
+  {
+    e.parser.readInput("+-[[[]]]");
+    e.execute();
   }
   {
     e.parser.readInput(",.,.");
