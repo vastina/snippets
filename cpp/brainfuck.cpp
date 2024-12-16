@@ -63,9 +63,9 @@ public:
   void Output() { std::putchar(value()); }
 };
 
-const static std::vector<char> valide_tokens{'>', '<', '+', '-',
+static constexpr char valide_tokens[] {'>', '<', '+', '-',
                                              '.', ',', '[', ']'};
-const static std::vector<char> space_tokens{' ', '\n', '\r', '\a'};
+static constexpr char space_tokens[] {' ', '\n', '\r', '\a'};
 
 struct bf_parser_t {
   std::string code{};
@@ -79,8 +79,8 @@ struct bf_parser_t {
     std::size_t leftBraceNum{0u};
     std::size_t rightBraceNum{0u};
     for (auto ch : text) {
-      if (std::ranges::find(valide_tokens.begin(), valide_tokens.end(), ch) !=
-          valide_tokens.end()) {
+      if (std::ranges::find(std::begin(valide_tokens), std::end(valide_tokens), ch) !=
+          std::end(valide_tokens)) {
         if (ch == '[') {
           leftBraceNum++;
         } else if (ch == ']') {
@@ -91,8 +91,8 @@ struct bf_parser_t {
           rightBraceNum++;
         }
         code.push_back(ch);
-      } else if (std::ranges::find(space_tokens.begin(), space_tokens.end(),
-                                   ch) == space_tokens.end()) {
+      } else if (std::ranges::find(std::begin(space_tokens), std::end(space_tokens),
+                                   ch) == std::end(space_tokens)) {
         valide = false;
         break;
       }
