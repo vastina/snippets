@@ -114,4 +114,6 @@ setup_project(5.9) # geometry shader exploding
 setup_project(5.10)# asteroids
 setup_project(6-light)
 
+setup_project(_lake)
+
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR})
